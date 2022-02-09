@@ -13,7 +13,7 @@ How to execute the program :
 Download the source code and execute below command for maven download
 $mvn Clean install
 
-Start the spring boot application using OcbcCliApplication.java as stanadlone and spring shell will open
+Start the spring boot application using XxxCliApplication.java as stanadlone and spring shell will open
  
 
  
