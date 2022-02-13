@@ -1,7 +1,7 @@
 
 package com.xxxbank.evaluation.cli.common;
 
-import com.xxxbank.evaluation.cli.CommandLine;
+import com.xxxbank.evaluation.cli.controller.BankController;
 
 /**
  * @author DINESHKANNAN_R
@@ -9,22 +9,22 @@ import com.xxxbank.evaluation.cli.CommandLine;
  */
 public class Message {
 	
-	public static <T> void getGreetingInfo(T arg1) {
-		CommandLine.logOutput("Hello, "+ arg1+"!");
+	public static <T> String  getGreetingInfo(T arg1) {
+		return "Hello, "+ arg1+"!";
 	}
  
-	public static <T> void printTransfer(T arg0, T arg1, T arg2) {
-		CommandLine.logOutput("Transferred "+ arg1+" to "+ arg2);
+	public static <T> String  printTransfer(T arg0, T arg1, T arg2) {
+		return "Transferred "+ arg1+" to "+ arg2;
 	}
 
-	public static <T> void  owingToStatement(T arg1, T arg2) {
-		CommandLine.logOutput("Owing "+ arg1 +" to "+ arg2);
+	public static <T> String  owingToStatement(T arg1, T arg2) {
+		return"Owing "+ arg1 +" to "+ arg2;
 	}
-	public static <T> void  owingFromStatement(T arg1, T arg2) {
-		CommandLine.logOutput("Owing "+ arg1 +" from "+ arg2);
+	public static <T> String  owingFromStatement(T arg1, T arg2) {
+		return "Owing "+ arg1 +" from "+ arg2;
 	}
-	public static <T> void  printBalance(T arg1) {
-		CommandLine.logOutput("Your balance is "+ arg1 );
+	public static <T> String  printBalance(T arg1) {
+		return "Your balance is "+ arg1 ;
 	}
 
 }

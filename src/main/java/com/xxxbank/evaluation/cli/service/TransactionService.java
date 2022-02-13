@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.stereotype.Service;
+
 import com.xxxbank.evaluation.cli.Exception.AccountNotFoundException;
 import com.xxxbank.evaluation.cli.Exception.BankCLIException;
 import com.xxxbank.evaluation.cli.common.Message;
@@ -20,9 +22,10 @@ import com.xxxbank.evaluation.cli.model.Transaction;
  * @author DINESHKANNAN_R
  *
  */
+@Service
 public class TransactionService implements BaseService {
 
-	private AccountService accountService;
+	private AccountService accountService=AccountService.getInstance();
 
 	private TransactionService() {
 	};
@@ -43,13 +46,13 @@ public class TransactionService implements BaseService {
 		// Fetch destination account details
 		Account recipAccount = this.accountService.searchAccount(transferTo);
 		if (recipAccount == null) {
-			throw new AccountNotFoundException(
-					"Unable to Transfer amount. Account, " + transferTo + " does not exist");
+			throw new AccountNotFoundException("Unable to Transfer amount. Account, " + transferTo + " does not exist");
 		}
 
 		BigDecimal balance = null;
 
-		// Check if sufficient amount of balance available, if not, add the missing
+		// Check if sufficient amount of balance available, if not, add the
+		// missing
 		// money to debt
 		if (account.getAccoutBalance().compareTo(transferAmount) >= 0) {
 			balance = account.getAccoutBalance().subtract(transferAmount);
@@ -65,7 +68,7 @@ public class TransactionService implements BaseService {
 
 		// Transfer amount if not zero
 		if (transferAmount.compareTo(BigDecimal.ZERO) > 0) {
-			Message.printTransfer(account.getAccountName(), transferAmount, transferTo);
+			account.setMessageDetails(Message.printTransfer(account.getAccountName(), transferAmount, transferTo));
 			this.addBalance(recipAccount, transferAmount);
 		}
 
@@ -85,7 +88,7 @@ public class TransactionService implements BaseService {
 		if (null == account || amount == null) {
 			return false;
 		}
-		 this.addBalance(account, amount);
+		this.addBalance(account, amount);
 		Transaction transaction = new Transaction.TransactionBuilder()
 				.withDestinationAccountName(account.getAccountName()).withTransferAmount(amount)
 				.withTransactionType(TRANSACTION_TYPE.TOPUP).withTransactionDateTime(LocalDateTime.now()).build();
@@ -124,7 +127,7 @@ public class TransactionService implements BaseService {
 	// Subtract amount from debt, transfer the subtracted debt amount and return
 	// remaining amount
 	private BigDecimal processDebt(Account acc, BigDecimal amount, Debt debt) {
-		if (null != debt && debt.getDebtAmount() != null && amount != null && amount.compareTo(BigDecimal.ZERO)>0) {
+		if (null != debt && debt.getDebtAmount() != null && amount != null && amount.compareTo(BigDecimal.ZERO) > 0) {
 			BigDecimal transferAmount = BigDecimal.ZERO;
 			if (amount.compareTo(debt.getDebtAmount()) >= 0) {
 				transferAmount = debt.getDebtAmount();
@@ -167,7 +170,7 @@ public class TransactionService implements BaseService {
 			debt.setOweToAccountName(oweTo);
 			debts.add(debt);
 		} else {
-			debtAmount=debtAmount.add(debt.getDebtAmount());
+			debtAmount = debtAmount.add(debt.getDebtAmount());
 		}
 		debt.setDebtAmount(debtAmount);
 		debt.setDateTime(LocalDateTime.now());

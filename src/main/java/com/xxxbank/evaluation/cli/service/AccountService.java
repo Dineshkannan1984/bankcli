@@ -5,20 +5,25 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.xxxbank.evaluation.cli.common.Message;
 import com.xxxbank.evaluation.cli.common.Utils;
+import com.xxxbank.evaluation.cli.controller.BankController;
 import com.xxxbank.evaluation.cli.model.Account;
 import com.xxxbank.evaluation.cli.model.Debt;
 
 /**
+ * Service class to service the account level details
  * @author DINESHKANNAN_R
  *
  */
+
+@Service
 public class AccountService implements BaseService {
 
 	private AccountService() {
 	};
-
 	public static AccountService getInstance() {
 		AccountService as = new AccountService();
 		return as;
@@ -54,23 +59,20 @@ public class AccountService implements BaseService {
 	public List<Debt> retrieveDebtByOweToAccountName(String OweToAccountName) {
 		return accountRepo.retrieveDebtByOweToAccountName(OweToAccountName);
 	}
-	public void getBalanceDetails(Account account) {
-		if (account == null ) {
-			return;
-		}
-
+	public Account getBalanceDetails(Account account) {
 		if (!Utils.isEmpty(account.getDebts())) {
 			account.getDebts().stream().forEach((debt) -> {
-				Message.owingToStatement(debt.getDebtAmount(), debt.getOweToAccountName());
+				account.setMessageDetails(account.getMessageDetails()+Message.owingToStatement(debt.getDebtAmount(), debt.getOweToAccountName()));
 			});
 		}
 
 		if (!Utils.isEmpty(account.getDebtsByOthers())) {
 			account.getDebtsByOthers().stream().forEach((debt) -> {
-				Message.owingFromStatement(debt.getDebtAmount(), debt.getAccountName());
+				account.setMessageDetails(account.getMessageDetails()+(Message.owingFromStatement(debt.getDebtAmount(), debt.getAccountName())));
 			});
 		}
-		Message.printBalance(account.getAccoutBalance());
+		account.setMessageDetails(Message.printBalance(account.getAccoutBalance()));
+		return account;
 	}
 
 }

@@ -1,5 +1,8 @@
 package com.xxxbank.evaluation.cli.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.xxxbank.evaluation.cli.common.Message;
 import com.xxxbank.evaluation.cli.model.Account;
 
@@ -8,22 +11,17 @@ import com.xxxbank.evaluation.cli.model.Account;
  *
  */
  
+@Service
 public class LoginService implements BaseService{
-
+	@Autowired
 	private AccountService accountService;
  
-	public static LoginService getInstance() {
-		LoginService as = new LoginService();
-		as.accountService = AccountService.getInstance();
- 		return as;
-	}
-
 	public Account login(String accountName) {
 		Account acc = accountService.searchAccount(accountName.trim());
 		if (acc == null) {
 			acc = accountService.createAccount(accountName);
 		}
-		Message.getGreetingInfo(accountName);
+		acc.setMessageDetails(Message.getGreetingInfo(accountName));
 		return acc;
 	}
 }

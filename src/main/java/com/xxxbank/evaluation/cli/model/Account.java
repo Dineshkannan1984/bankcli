@@ -20,7 +20,13 @@ public class Account {
 	private LocalDateTime createdDateTime;
 	private List<Debt> debts;
 	private List<Debt> debtsByOthers;
-
+	private String  messageDetails;
+	private BigDecimal amountStr;
+	
+	public Account() {
+		
+	}
+	
 	public Account(AccountBuilder builder) {
 		super();
 		this.accountName = builder.accountName;
@@ -36,12 +42,28 @@ public class Account {
 		this.createdDateTime = createdDateTime;
 	}
 
+	public String getMessageDetails() {
+		return messageDetails;
+	}
+
+	public void setMessageDetails(String messageDetails) {
+		this.messageDetails = messageDetails;
+	}
+
 	public String getAccountName() {
 		return accountName;
 	}
 
 	public void setAccountName(String accountName) {
 		this.accountName = accountName;
+	}
+	
+	public BigDecimal getAmountStr() {
+		return amountStr;
+	}
+
+	public void setAmountStr(BigDecimal amountStr) {
+		this.amountStr = amountStr;
 	}
 
 	public BigDecimal getAccoutBalance() {
@@ -51,7 +73,7 @@ public class Account {
 	public void setAccoutBalance(BigDecimal accoutBalance) {
 		this.accoutBalance = accoutBalance;
 	}
-
+	
 	public List<Transaction> getTransactions() {
 		return transactions;
 	}

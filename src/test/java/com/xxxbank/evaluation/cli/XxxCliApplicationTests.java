@@ -2,6 +2,7 @@ package com.xxxbank.evaluation.cli;
 
 import java.math.BigDecimal;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.xxxbank.evaluation.cli.model.Account;
@@ -11,12 +12,15 @@ import com.xxxbank.evaluation.cli.service.TransactionService;
 
 import junit.framework.TestCase;
 
-@SpringBootTest
-class XxxCliApplicationTests extends TestCase {
+//@SpringBootTest
+class XxxCliApplicationTests  extends TestCase {
 	
-	TransactionService transactionService = TransactionService.getInstance();
-	AccountService accountService = AccountService.getInstance();
-	LoginService loginService = LoginService.getInstance();
+	@Autowired
+	TransactionService transactionService ;
+	@Autowired
+	AccountService accountService ;
+	@Autowired
+	LoginService loginService;
 
 
 	/**
