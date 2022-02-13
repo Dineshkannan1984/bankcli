@@ -3,7 +3,7 @@ Web Based Application developed using Spring Boot and ReactJS
 
 **Application Name **: XXX Interactive Banking  
 
- 
+ **Swagger**: http://localhost:8080/swagger-ui/index.html
 
 **Requirement** :Develop Web Application in Java spring boot as backend and React as frontend to simulate interaction with a retail bank.
 
