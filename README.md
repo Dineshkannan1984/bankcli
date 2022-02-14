@@ -1,70 +1,25 @@
-# Getting Started with Create React App
+Web Based Application developed using Spring Boot and ReactJS
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**Application Name **: XXX Interactive Banking
 
-## Available Scripts
+Swagger: http://localhost:8080/swagger-ui/index.html
 
-In the project directory, you can run:
+Requirement :Develop Web Application in Java spring boot as backend and React as frontend to simulate interaction with a retail bank.
 
-### `npm start`
+How to execute the program :
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+BackEnd
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Download the source code and execute below command for maven download $mvn clean install
 
-### `npm test`
+Start the spring boot application using XxxCliApplication.java as stanadlone and all the service hosted will eb available for consumption
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+FontEnd
 
-### `npm run build`
+Download the FrontEnd source code and start the applicaiton using below command
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+$npm start
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Assumption :
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Only one user account can exist. User account is case insensitive. No currency is attached to top up amount. User must login to Topup and Transfer. Amount can be transferred only to existing account Amount cannot be transferred to same account
